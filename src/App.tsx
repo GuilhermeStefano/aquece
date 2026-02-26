@@ -36,9 +36,7 @@ export default function App() {
             <Flame className="h-7 w-7 text-brand-orange" />
             <span className="font-bold text-xl tracking-tight">Aquece Já</span>
           </div>
-          <button className="text-white/80 hover:text-white transition-colors">
-            <Menu className="h-6 w-6" />
-          </button>
+         
         </div>
       </nav>
 
