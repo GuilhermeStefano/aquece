@@ -3,15 +3,26 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { useState } from "react";
 import { motion } from "motion/react";
 import { Flame, Zap, ShieldCheck, Menu, Plus, Instagram, Linkedin, Github } from "lucide-react";
 
 export default function App() {
+  const [email, setEmail] = useState("");
+
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
     transition: { duration: 0.6 }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    // não envia para lugar nenhum, apenas limpa e mostra uma mensagem
+    alert("Obrigado! Fique de olho na sua caixa de entrada.");
+    setEmail("");
   };
 
   return (
@@ -227,12 +238,15 @@ export default function App() {
               <motion.p {...fadeIn} className="text-gray-400">Seja o primeiro a saber quando o projeto entrar em fase de produção.</motion.p>
             </div>
             
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <motion.div {...fadeIn}>
                 <input 
                   className="w-full bg-brand-light-gray border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-brand-orange focus:ring-brand-orange py-4 px-6 outline-none transition-all" 
                   placeholder="Seu melhor e-mail" 
                   type="email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </motion.div>
               <motion.button 
