@@ -9,6 +9,7 @@ import { Flame, Zap, ShieldCheck, Menu, Plus, Instagram, Linkedin, Github } from
 
 export default function App() {
   const [email, setEmail] = useState("");
+  const [sent, setSent] = useState(false);
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -21,7 +22,9 @@ export default function App() {
     e.preventDefault();
     if (!email) return;
     // não envia para lugar nenhum, apenas limpa silenciosamente
+    setSent(true);
     setEmail("");
+    setTimeout(() => setSent(false), 2000); // volta ao normal após 2 segundos
   };
 
   return (
@@ -252,10 +255,14 @@ export default function App() {
                 {...fadeIn}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-4 bg-white text-brand-dark font-bold rounded-lg hover:bg-brand-orange hover:text-white transition-all duration-300 shadow-lg" 
+                className={`w-full py-4 font-bold rounded-lg transition-all duration-300 shadow-lg ${
+                  sent 
+                    ? 'bg-green-500 text-white hover:bg-green-600' 
+                    : 'bg-white text-brand-dark hover:bg-brand-orange hover:text-white'
+                }`} 
                 type="submit"
               >
-                Me Avise
+                {sent ? "Enviado!" : "Me Avise"}
               </motion.button>
             </form>
             <p className="text-center text-xs text-gray-600 mt-6 italic">
@@ -287,7 +294,7 @@ export default function App() {
             </a>
           </div>
           
-          <p className="text-xs text-gray-600">© 2023 Aquece Já. Todos os direitos reservados.</p>
+          <p className="text-xs text-gray-600">© 2026 Aquece Já. Todos os direitos reservados.</p>
         </div>
       </footer>
     </div>
