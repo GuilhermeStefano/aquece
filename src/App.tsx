@@ -20,8 +20,7 @@ export default function App() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    // não envia para lugar nenhum, apenas limpa e mostra uma mensagem
-    alert("Obrigado! Fique de olho na sua caixa de entrada.");
+    // não envia para lugar nenhum, apenas limpa silenciosamente
     setEmail("");
   };
 
